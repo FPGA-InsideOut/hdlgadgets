@@ -33,7 +33,7 @@ logic [D_WIDTH - 1:0] queue0, queue1, queue2;
       begin
         if (queue.size () != 0)
         begin
-          queue.delete (0);          // queue.delete(0) is used as "queue.pop_front()" method doesn't work in Icarus
+          queue.delete (0);          // queue.delete(0) is used because "queue.pop_front()" method doesn't work in IcarusVerilog
         end
       end
     end

@@ -56,9 +56,6 @@ class gadget_modelqueue(gadgettop):
                     self._wctx.addstr(3,23, u'\u2517\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u251B'.encode('utf-8'), curses.color_pair(1))
                     self._wctx.addstr(2,25, helper.show_dict_charlist_as_string(self.logicstate_post['queue0']), curses.color_pair(1))
                 else:
-                    self._wctx.addstr(1,23, u'\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510'.encode('utf-8'), curses.color_pair(1))
-                    self._wctx.addstr(2,23, u'\u2502\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u2502'.encode('utf-8'), curses.color_pair(1))
-                    self._wctx.addstr(3,23, u'\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518'.encode('utf-8'), curses.color_pair(1))
                     self._wctx.addstr(2,25, helper.show_dict_charlist_as_string(self.logicstate_post['queue0']), curses.color_pair(1))
                 ####QUEUE_1####
                 if (self.logicstate_post['qsize'][0] > 1):
