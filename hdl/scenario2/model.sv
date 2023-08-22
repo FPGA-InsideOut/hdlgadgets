@@ -26,7 +26,7 @@ logic [D_WIDTH - 1:0] queue0, queue1, queue2;
     ////DO MODELLING HERE////
     begin
       if (push)
-      begin
+      begin                          //blocking assignments and function calls can be used between these begin and end
         queue.push_back (up_data);
       end
       if (pop)
