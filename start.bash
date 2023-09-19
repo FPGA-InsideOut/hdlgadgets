@@ -5,7 +5,7 @@ echo "  2) One_FIFO with Model"
 echo "  3) Two_FIFOs"
 echo "  4) Two_FIFOs with Custom_Logic"
 echo "  5) Two_FIFOs with Custom_Logic with Model"
-
+echo "  6) Two_FIFOs with Model"
 
 read n
 case $n in
@@ -14,5 +14,6 @@ case $n in
   3) make -B -f Makefile_sc3;;
   4) make -B -f Makefile_sc4;;
   5) make -B -f Makefile_sc5;;
+  6) make -B -f Makefile_sc6;;
   *) echo "invalid option";;
 esac
