@@ -15,12 +15,19 @@ Here you can see an example of a training scenario comprised of three "gadgets":
 
 
 ## How it works
+
 "hdlgadgets" requires HDL simulator running on the background (it was tested with Icarus Verilog opensource simulator which has support for SystemVerilog). To communicate with the simulator "hdlgadgets" needs cocotb library:
 
 ![howitworks](https://github.com/FPGA-InsideOut/hdlgadgets/assets/53142676/7d4cb68a-fb0e-4ca3-9855-99e7112fbe58)
 
 "hdlgadgets" uses hierarchical references to communicate with the simulated design. This allows to keep HDL code clean so that code can be used as the reference material for the design as is.
 
+## Compatibility
+
+"hdlgadgets" has been tested with the following software:
+* python v3.11
+* cocotb v1.8.0
+* icarus_verilog v11.0
 
 ## Installation on Linux (Debian)
 
