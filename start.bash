@@ -2,9 +2,6 @@
 
 clear
 
-termcolumns=$(tput cols)
-termlines=$(tput lines)
-
 echo "Select Scenario:"
 echo "  1) One_FIFO"
 echo "  2) One_FIFO with Model"
@@ -14,6 +11,9 @@ echo "  5) Two_FIFOs with Custom_Logic with Model"
 echo "  6) Two_FIFOs with Model"
 
 read n
+
+termcolumns=$(tput cols)
+termlines=$(tput lines)
 
 #Check miminum size of terminal window
 if [ $n -eq 1 ]; then
