@@ -123,7 +123,7 @@ foo@debian:~$ source ./myvirtenv/bin/activate
 
 ## Possible issues and troubleshooting
 
-1. "hdlgadgets" uses "curses" library which may crash the program if it tries to draw outside terminal window. Please make sure that your terminal window is large enough so that "hdlgadgets" scenario can fully fit in it.
+1. "hdlgadgets" uses "curses" library which may crash the program if it tries to draw outside terminal window. Although start.bash script checks the size of the terminal window before proceeding it is important not to resize terminal window while "hdlgadgets" is running.
 
 2. In case of an undexpected program crash it might not be possible to see an exact reason displayed on the screen because curses intercepts "stdout".
 
