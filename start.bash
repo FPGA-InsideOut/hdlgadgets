@@ -16,22 +16,22 @@ termcolumns=$(tput cols)
 termlines=$(tput lines)
 
 #Check miminum size of terminal window
-if [ $n -eq 1 ]; then
+if [ "$n" = "1" ]; then
     if [ $termcolumns -lt 52 ] || [ $termlines -lt 29 ]; then { echo "Expand terminal window to minimum: 52x29, your window is too small: ${termcolumns}x${termlines}" ; exit 1; } fi
 fi
-if [ $n -eq 2 ]; then
+if [ "$n" = "2" ]; then
     if [ $termcolumns -lt 97 ] || [ $termlines -lt 29 ]; then { echo "Expand terminal window to minimum: 97x29, your window is too small: ${termcolumns}x${termlines}" ; exit 1; } fi
 fi
-if [ $n -eq 3 ]; then
+if [ "$n" = "3" ]; then
     if [ $termcolumns -lt 98 ] || [ $termlines -lt 29 ]; then { echo "Expand terminal window to minimum: 98x29, your window is too small: ${termcolumns}x${termlines}" ; exit 1; } fi
 fi
-if [ $n -eq 4 ]; then
+if [ "$n" = "4" ]; then
     if [ $termcolumns -lt 108 ] || [ $termlines -lt 29 ]; then { echo "Expand terminal window to minimum: 108x29, your window is too small: ${termcolumns}x${termlines}" ; exit 1; } fi
 fi
-if [ $n -eq 5 ]; then
+if [ "$n" = "5" ]; then
     if [ $termcolumns -lt 108 ] || [ $termlines -lt 29 ]; then { echo "Expand terminal window to minimum: 108x29, your window is too small: ${termcolumns}x${termlines}" ; exit 1; } fi
 fi
-if [ $n -eq 6 ]; then
+if [ "$n" = "6" ]; then
     if [ $termcolumns -lt 109 ] || [ $termlines -lt 29 ]; then { echo "Expand terminal window to minimum: 109x29, your window is too small: ${termcolumns}x${termlines}" ; exit 1; } fi
 fi
 
