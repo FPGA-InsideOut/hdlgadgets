@@ -28,7 +28,6 @@ logic [D_WIDTH - 1:0] queue0, queue1, queue2;
       if (push)
       begin                          //blocking assignments and function calls can be used between these begin and end
         queue.push_back (up_data);
-        //queue.push_back (up_data);
       end
       if (pop)
       begin
