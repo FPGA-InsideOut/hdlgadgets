@@ -11,19 +11,19 @@ module tb
 
   // Upstream
 
-  wire                  up_valid;
-  wire                  up_ready;
-  wire [(D_WIDTH-1):0]  up_data;
+  wire                  up_valid_a;
+  wire                  up_ready_a;
+  wire [(D_WIDTH-1):0]  up_data_a;
+
+  wire                  up_valid_b;
+  wire                  up_ready_b;
+  wire [(D_WIDTH-1):0]  up_data_b;
 
   // Downstream
 
   wire                  down_valid;
   wire                  down_ready;
   wire [(D_WIDTH-1):0]  down_data;
-
-  // Model
-
-  wire [(D_WIDTH-1):0]  model_data;
 
   //--------------------------------------------------------------------------
   // DUT instantiation
@@ -32,40 +32,15 @@ rtl # (.D_WIDTH (D_WIDTH), .A_WIDTH (A_WIDTH))
 RTL1
 (       .clk(clk),
         .rst(rst),
-        .up_data(up_data),
-        .up_valid(up_valid),
-        .up_ready(up_ready),
+        .up_data_a(up_data_a),
+        .up_valid_a(up_valid_a),
+        .up_ready_a(up_ready_a),
+        .up_data_b(up_data_b),
+        .up_valid_b(up_valid_b),
+        .up_ready_b(up_ready_b),
         .down_data(down_data),
         .down_valid(down_valid),
         .down_ready(down_ready));
-
-  //--------------------------------------------------------------------------
-  // MODEL instantiation
-
-wire push;
-wire pop;
-
-assign push = up_valid & up_ready;
-assign pop = down_valid & down_ready;
-
-model # (.D_WIDTH (D_WIDTH))
-MDL1
-(       .clk(clk),
-        .rst(rst),
-        .up_data(up_data),
-        .push(push),
-        .down_data(model_data),
-        .pop(pop));
-
-  //--------------------------------------------------------------------------
-  // CHECKING module instantiation
-
-check # (.D_WIDTH (D_WIDTH))
-CHK1
-(
-        .rtl_data(down_data),
-        .rtl_valid(down_valid),
-        .model_data(model_data));
 
   //--------------------------------------------------------------------------
   // Driving clock

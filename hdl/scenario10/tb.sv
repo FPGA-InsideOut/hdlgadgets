@@ -11,9 +11,13 @@ module tb
 
   // Upstream
 
-  wire                  up_valid;
-  wire                  up_ready;
-  wire [(D_WIDTH-1):0]  up_data;
+  wire                  up_valid_a;
+  wire                  up_ready_a;
+  wire [(D_WIDTH-1):0]  up_data_a;
+
+  wire                  up_valid_b;
+  wire                  up_ready_b;
+  wire [(D_WIDTH-1):0]  up_data_b;
 
   // Downstream
 
@@ -32,9 +36,12 @@ rtl # (.D_WIDTH (D_WIDTH), .A_WIDTH (A_WIDTH))
 RTL1
 (       .clk(clk),
         .rst(rst),
-        .up_data(up_data),
-        .up_valid(up_valid),
-        .up_ready(up_ready),
+        .up_data_a(up_data_a),
+        .up_valid_a(up_valid_a),
+        .up_ready_a(up_ready_a),
+        .up_data_b(up_data_b),
+        .up_valid_b(up_valid_b),
+        .up_ready_b(up_ready_b),
         .down_data(down_data),
         .down_valid(down_valid),
         .down_ready(down_ready));
@@ -42,23 +49,27 @@ RTL1
   //--------------------------------------------------------------------------
   // MODEL instantiation
 
-wire push;
+wire push_a;
+wire push_b;
 wire pop;
 
-assign push = up_valid & up_ready;
+assign push_a = up_valid_a & up_ready_a;
+assign push_b = up_valid_b & up_ready_b;
 assign pop = down_valid & down_ready;
 
 model # (.D_WIDTH (D_WIDTH))
 MDL1
 (       .clk(clk),
         .rst(rst),
-        .up_data(up_data),
-        .push(push),
+        .up_data_a(up_data_a),
+        .up_data_b(up_data_b),
+        .push_a(push_a),
+        .push_b(push_b),
         .down_data(model_data),
         .pop(pop));
 
   //--------------------------------------------------------------------------
-  // CHECKING module instantiation
+  // CHECKING modules instantiation
 
 check # (.D_WIDTH (D_WIDTH))
 CHK1

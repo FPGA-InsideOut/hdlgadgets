@@ -58,7 +58,6 @@ MDL1
         .pop(pop));
 
   //--------------------------------------------------------------------------
-
   // CHECKING module instantiation
 
 check # (.D_WIDTH (D_WIDTH))
@@ -69,8 +68,6 @@ CHK1
         .model_data(model_data));
 
   //--------------------------------------------------------------------------
-
-
   // Driving clock
 
   initial

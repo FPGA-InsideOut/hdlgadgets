@@ -38,12 +38,14 @@ logic [D_WIDTH - 1:0] queue0, queue1, queue2;
       end
     end
 
-    qsize = queue.size ();
-    //Cocotb cannot access queue[$] via hierarchical reference but can access queue0, queue1, queue2 with coonstant indexes
-    queue0 = queue [0];
-    queue1 = queue [1];
-    queue2 = queue [2];
-    down_data = queue [0];
+    //The Model doesn't interact with RTL but let's use non-blocking assigments for final model values,
+    //it is just a good parctice that will help avoid races between RTL and Model
+    qsize <= queue.size ();
+    //Cocotb cannot access queue[$] via hierarchical reference but can access queue0, queue1, queue2 with constant indexes
+    queue0 <= queue [0];
+    queue1 <= queue [1];
+    queue2 <= queue [2];
+    down_data <= queue [0];
 
   end
 ////END OF QUEUE MODEL////
