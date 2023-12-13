@@ -48,7 +48,7 @@ if [ "$n" = "9" ]; then
     if [ $termcolumns -lt 108 ] || [ $termlines -lt 30 ]; then { echo "Expand terminal window to minimum: 108x30, your window is too small: ${termcolumns}x${termlines}" ; exit 1; } fi
 fi
 if [ "$n" = "10" ]; then
-    if [ $termcolumns -lt 109 ] || [ $termlines -lt 29 ]; then { echo "Expand terminal window to minimum: 109x29, your window is too small: ${termcolumns}x${termlines}" ; exit 1; } fi
+    if [ $termcolumns -lt 109 ] || [ $termlines -lt 38 ]; then { echo "Expand terminal window to minimum: 109x38, your window is too small: ${termcolumns}x${termlines}" ; exit 1; } fi
 fi
 
 #Start Cocotb
