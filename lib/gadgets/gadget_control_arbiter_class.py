@@ -3,7 +3,7 @@ from lib.common.gadgettop_class import gadgettop
 from cocotb.types import Bit, Logic, LogicArray
 from lib.common.helper_class import helper
 
-class gadget_control_join(gadgettop):
+class gadget_control_arbiter(gadgettop):
 
         def __init__(self):
                 super().__init__()
@@ -14,7 +14,7 @@ class gadget_control_join(gadgettop):
 
                 #Control state
                 self.controlstate_pre = {'up_valid_a':[None], 'up_data_a':[None,None,None,None,None,None], 'up_valid_b':[None], 'up_data_b':[None,None,None,None,None,None], 'down_ready':[None], 'rst':[None]}
-                self.controlstate_post = {'up_valid_a':['0'], 'up_data_a':['0','0','0','0','0','0'], 'up_valid_b':['0'], 'up_data_b':['0','0','0','0','0','0'], 'down_ready':['0'], 'rst':['0']}
+                self.controlstate_post = {'up_valid_a':['0'], 'up_data_a':['0','0','0','0','0','0'], 'up_valid_b':['0'], 'up_data_b':['0','0','0','0','0','1'], 'down_ready':['0'], 'rst':['0']}
 
         def __del__(self):
                 super().__del__()
@@ -39,8 +39,7 @@ class gadget_control_join(gadgettop):
                      self.controlstate_post['up_data_a'][3] = '0' if (self.controlstate_pre['up_data_a'][3] == '1') else '1'
                 if (key == 98):                                                                                          #b-sym pressed
                      self.controlstate_post['up_data_a'][4] = '0' if (self.controlstate_pre['up_data_a'][4] == '1') else '1'
-                if (key == 110):                                                                                         #n-sym pressed
-                     self.controlstate_post['up_data_a'][5] = '0' if (self.controlstate_pre['up_data_a'][5] == '1') else '1'
+                ### n-sym is not used because ['up_data_a'][5] is always 0
                 if (key == 97):                                                                                          #a-sym pressed
                      self.controlstate_post['up_valid_a'][0] = '0' if (self.controlstate_pre['up_valid_a'][0] == '1') else '1'
 
@@ -54,8 +53,7 @@ class gadget_control_join(gadgettop):
                      self.controlstate_post['up_data_b'][3] = '0' if (self.controlstate_pre['up_data_b'][3] == '1') else '1'
                 if (key == 66):                                                                                          #B-sym pressed
                      self.controlstate_post['up_data_b'][4] = '0' if (self.controlstate_pre['up_data_b'][4] == '1') else '1'
-                if (key == 78):                                                                                          #N-sym pressed
-                     self.controlstate_post['up_data_b'][5] = '0' if (self.controlstate_pre['up_data_b'][5] == '1') else '1'
+                ### N-sym is not used because ['up_data_b'][5] is always 1
                 if (key == 65):                                                                                          #A-sym pressed
                      self.controlstate_post['up_valid_b'][0] = '0' if (self.controlstate_pre['up_valid_b'][0] == '1') else '1'
 
@@ -97,9 +95,9 @@ class gadget_control_join(gadgettop):
                 self._wctx.addstr(0,0,  u'\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557'.encode('utf-8'), curses.color_pair(1))
                 self._wctx.addstr(1,0,  u'\u2551\u0020\u0072\u0065\u0073\u0065\u0074\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u002D\u0020\u0022\u0052\u002D\u006B\u0065\u0079\u0022\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u2551'.encode('utf-8'), curses.color_pair(1))
                 self._wctx.addstr(2,0,  u'\u2551\u0020\u0075\u0070\u005F\u0076\u0061\u006C\u0069\u0064\u005F\u0061\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u002D\u0020\u0022\u0061\u002D\u0073\u0079\u006D\u0022\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u2551'.encode('utf-8'), curses.color_pair(1))
-                self._wctx.addstr(3,0,  u'\u2551\u0020\u0075\u0070\u005F\u0064\u0061\u0074\u0061\u005F\u0061\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u002D\u0020\u0022\u007A\u002C\u0078\u002C\u0063\u002C\u0076\u002C\u0062\u002C\u006E\u002D\u0073\u0079\u006D\u0073\u0022\u0020\u2551'.encode('utf-8'), curses.color_pair(1))
+                self._wctx.addstr(3,0,  u'\u2551\u0020\u0075\u0070\u005F\u0064\u0061\u0074\u0061\u005F\u0061\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u002D\u0020\u0022\u007A\u002C\u0078\u002C\u0063\u002C\u0076\u002C\u0062\u002C\u2612\u002D\u0073\u0079\u006D\u0073\u0022\u0020\u2551'.encode('utf-8'), curses.color_pair(1))
                 self._wctx.addstr(4,0,  u'\u2551\u0020\u0075\u0070\u005F\u0076\u0061\u006C\u0069\u0064\u005F\u0062\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u002D\u0020\u0022\u0041\u002D\u0073\u0079\u006D\u0022\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u2551'.encode('utf-8'), curses.color_pair(1))
-                self._wctx.addstr(5,0,  u'\u2551\u0020\u0075\u0070\u005F\u0064\u0061\u0074\u0061\u005F\u0062\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u002D\u0020\u0022\u005A\u002C\u0058\u002C\u0043\u002C\u0056\u002C\u0042\u002C\u004E\u002D\u0073\u0079\u006D\u0073\u0022\u0020\u2551'.encode('utf-8'), curses.color_pair(1))
+                self._wctx.addstr(5,0,  u'\u2551\u0020\u0075\u0070\u005F\u0064\u0061\u0074\u0061\u005F\u0062\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u002D\u0020\u0022\u005A\u002C\u0058\u002C\u0043\u002C\u0056\u002C\u0042\u002C\u2612\u002D\u0073\u0079\u006D\u0073\u0022\u0020\u2551'.encode('utf-8'), curses.color_pair(1))
                 self._wctx.addstr(6,0,  u'\u2551\u0020\u0064\u006F\u0077\u006E\u005F\u0072\u0065\u0061\u0064\u0079\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u002D\u0020\u0022\u0053\u002D\u006B\u0065\u0079\u0022\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u2551'.encode('utf-8'), curses.color_pair(1))
                 self._wctx.addstr(7,0,  u'\u2551\u0020\u0043\u006C\u006F\u0063\u006B\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u002D\u0020\u0022\u0045\u004E\u0054\u0045\u0052\u002D\u006B\u0065\u0079\u0022\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u2551'.encode('utf-8'), curses.color_pair(1))
                 self._wctx.addstr(8,0,  u'\u2551\u0020\u0051\u0075\u0069\u0074\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u002D\u0020\u0022\u0045\u0053\u0043\u002D\u006B\u0065\u0079\u0022\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u2551'.encode('utf-8'), curses.color_pair(1))

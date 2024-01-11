@@ -127,8 +127,8 @@ test_str = '-----------'
 #test_str = '║ down_ready_a ○        - "s-sym"            ║'#4
 #test_str = 'FIFO_B'#4
 #test_str = '"A-sym"'#4
-test_str = '"Z,X,C,V,B,N-syms"'
-
+#test_str = '"Z,X,C,V,B,N-syms"'
+test_str = 'z Z'
 
 # printing original String
 print("The original string is : " + str(test_str))
