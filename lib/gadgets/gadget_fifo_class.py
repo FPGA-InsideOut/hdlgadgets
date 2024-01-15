@@ -74,14 +74,14 @@ class gadget_fifo(gadgettop):
                 if (self.logicstate_post['up_valid'][0] == '1'):
                     self._wctx.addstr(10,0, u'\u2500\u2500\u2500\u2500\u0076\u0061\u006C\u0069\u0064\u2500\u2500\u2500\u2500\u2500\u2500\u276F'.encode('utf-8'), curses.color_pair(1))
                 elif (self.logicstate_post['up_valid'][0] == '0'):
-                    self._wctx.addstr(10,0, u'\u2E33\u2E33\u2E33\u2E33\u0021\u0076\u0061\u006C\u0069\u0064\u2E33\u2E33\u2E33\u2E33\u2E33\u276D'.encode('utf-8'), curses.color_pair(1))
+                    self._wctx.addstr(10,0, u'\uFF65\uFF65\uFF65\uFF65\u0021\u0076\u0061\u006C\u0069\u0064\uFF65\uFF65\uFF65\uFF65\uFF65\u276D'.encode('utf-8'), curses.color_pair(1))
                 else:
                     self._wctx.addstr(10,0, u'\u00D7\u00D7\u00D7\u00D7\u003F\u0076\u0061\u006C\u0069\u0064\u00D7\u00D7\u00D7\u00D7\u00D7\u276D'.encode('utf-8'), curses.color_pair(1))
                 ####UP_READY####
                 if (self.logicstate_post['up_ready'][0] == '1'):
                     self._wctx.addstr(11,0, u'\u276E\u2500\u2500\u2500\u0072\u0065\u0061\u0064\u0079\u2500\u2500\u2500\u2500\u2500\u2500\u2500'.encode('utf-8'), curses.color_pair(1))
                 elif (self.logicstate_post['up_ready'][0] == '0'):
-                    self._wctx.addstr(11,0, u'\u276C\u2E33\u2E33\u2E33\u0021\u0072\u0065\u0061\u0064\u0079\u2E33\u2E33\u2E33\u2E33\u2E33\u2E33'.encode('utf-8'), curses.color_pair(1))
+                    self._wctx.addstr(11,0, u'\u276C\uFF65\uFF65\uFF65\u0021\u0072\u0065\u0061\u0064\u0079\uFF65\uFF65\uFF65\uFF65\uFF65\uFF65'.encode('utf-8'), curses.color_pair(1))
                 else:
                     self._wctx.addstr(11,0, u'\u276C\u00D7\u00D7\u00D7\u003F\u0072\u0065\u0061\u0064\u0079\u00D7\u00D7\u00D7\u00D7\u00D7\u00D7'.encode('utf-8'), curses.color_pair(1))
                 ####UP_DATA####
@@ -143,14 +143,14 @@ class gadget_fifo(gadgettop):
                 if (self.logicstate_post['down_valid'][0] == '1'):
                     self._wctx.addstr(10,30, u'\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u0076\u0061\u006C\u0069\u0064\u2500\u2500\u2500\u276F'.encode('utf-8'), curses.color_pair(1))
                 elif (self.logicstate_post['down_valid'][0] == '0'):
-                    self._wctx.addstr(10,30, u'\u2E33\u2E33\u2E33\u2E33\u2E33\u2E33\u0021\u0076\u0061\u006C\u0069\u0064\u2E33\u2E33\u2E33\u276D'.encode('utf-8'), curses.color_pair(1))
+                    self._wctx.addstr(10,30, u'\uFF65\uFF65\uFF65\uFF65\uFF65\uFF65\u0021\u0076\u0061\u006C\u0069\u0064\uFF65\uFF65\uFF65\u276D'.encode('utf-8'), curses.color_pair(1))
                 else:
                     self._wctx.addstr(10,30, u'\u00D7\u00D7\u00D7\u00D7\u00D7\u00D7\u003F\u0076\u0061\u006C\u0069\u0064\u00D7\u00D7\u00D7\u276D'.encode('utf-8'), curses.color_pair(1))
                 ####DOWN_READY####
                 if (self.logicstate_post['down_ready'][0] == '1'):
                     self._wctx.addstr(11,30, u'\u276E\u2500\u2500\u2500\u2500\u2500\u2500\u0072\u0065\u0061\u0064\u0079\u2500\u2500\u2500\u2500'.encode('utf-8'), curses.color_pair(1))
                 elif (self.logicstate_post['down_ready'][0] == '0'):
-                    self._wctx.addstr(11,30, u'\u276C\u2E33\u2E33\u2E33\u2E33\u2E33\u0021\u0072\u0065\u0061\u0064\u0079\u2E33\u2E33\u2E33\u2E33'.encode('utf-8'), curses.color_pair(1))
+                    self._wctx.addstr(11,30, u'\u276C\uFF65\uFF65\uFF65\uFF65\uFF65\u0021\u0072\u0065\u0061\u0064\u0079\uFF65\uFF65\uFF65\uFF65'.encode('utf-8'), curses.color_pair(1))
                 else:
                     self._wctx.addstr(11,30, u'\u276C\u00D7\u00D7\u00D7\u00D7\u00D7\u003F\u0072\u0065\u0061\u0064\u0079\u00D7\u00D7\u00D7\u00D7'.encode('utf-8'), curses.color_pair(1))
                 ####POP####

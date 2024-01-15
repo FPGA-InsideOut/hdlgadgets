@@ -19,8 +19,8 @@ test_str = 'Uncomment string'
 #test_str = '                ┃  xxxxxx  ❋ ┃                '#7
 #test_str = '                ┡━━━━━━━━━━━━┩                '#8
 #test_str = '                │000      000│                '#9
-#test_str = '⸳⸳⸳⸳!valid⸳⸳⸳⸳⸳❭│push   empty│───────valid───❭'#10
-#test_str = '❮───ready───────│full     pop│❬⸳⸳⸳⸳⸳!ready⸳⸳⸳⸳'#11
+#test_str = '････!valid･････❭│push   empty│───────valid───❭'#10
+#test_str = '❮───ready───────│full     pop│❬･････!ready････'#11
 #test_str = '                └────────────┘                '#12
 
 
@@ -84,30 +84,30 @@ test_str = 'Uncomment string'
 #test_str = 'NO_MATCH!!!'
 #test_str = ''
 
-test_str = '-----------'
+#test_str = '-----------'
 
 
 #####UP######################
 #            ━━━━000000━◉╾╯
 #UP_VALID
 #            ────valid──────❯
-#            ⸳⸳⸳⸳!valid⸳⸳⸳⸳⸳❭
+#            ････!valid･････❭
 #            ××××?valid×××××❭
 
 #UP_READY
 #            ❮───ready───────
-#            ❬⸳⸳⸳!ready⸳⸳⸳⸳⸳⸳
+#            ❬･･･!ready･･････
 #            ❬×××?ready××××××
 
 #####DOWN####################
 #              ╰╼━━000000━━━❱
 #DOWN_VALID
 #            ───────valid───❯
-#            ⸳⸳⸳⸳⸳⸳!valid⸳⸳⸳❭
+#            ･･････!valid･･･❭
 #            ××××××?valid×××❭
 #DOWN_READY
 #            ❮──────ready────
-#            ❬⸳⸳⸳⸳⸳!ready⸳⸳⸳⸳
+#            ❬･････!ready････
 #            ❬×××××?ready××××
 
 
@@ -128,7 +128,9 @@ test_str = '-----------'
 #test_str = 'FIFO_B'#4
 #test_str = '"A-sym"'#4
 #test_str = '"Z,X,C,V,B,N-syms"'
-test_str = 'z Z'
+#test_str = 'z Z'
+test_str = '❬･････!ready････'
+
 
 # printing original String
 print("The original string is : " + str(test_str))
