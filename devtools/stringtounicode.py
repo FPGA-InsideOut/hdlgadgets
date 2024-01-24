@@ -24,6 +24,22 @@ test_str = 'Uncomment string'
 #test_str = '                └────────────┘                '#12
 
 
+
+#test_str = '                ┏━━━━━━━━━━━━┓                '
+#test_str = '             ┏━━❱            ┃                '
+#test_str = '             ┃  ┃─────◥◤─────┃                '
+#test_str = '             ┃  ┃            ┃                '
+#test_str = '━━━━      ━━━┛  ┃─────◥◤─────┃  ┏━━━      ━━━❱'
+#test_str = '                ┃            ┃  ┃             '
+#test_str = '                ┃─────◥◤─────┃  ┃             '
+#test_str = '                ┃            ❱━━┛             '
+#test_str = '                ┡━━━━━━━━━━━━┩                '
+#test_str = '                │            │                '
+#test_str = '                │            │                '
+#test_str = '                │            │                '
+#test_str = '                └────────────┘                '
+test_str = 'SISO'
+
 #            00000000001
 #            01234567890
 #test_str = '┌────────┐'#0
@@ -129,7 +145,7 @@ test_str = 'Uncomment string'
 #test_str = '"A-sym"'#4
 #test_str = '"Z,X,C,V,B,N-syms"'
 #test_str = 'z Z'
-test_str = '❬･････!ready････'
+#test_str = '❱'
 
 
 # printing original String
