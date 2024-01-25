@@ -38,7 +38,7 @@ test_str = 'Uncomment string'
 #test_str = '                │            │                '
 #test_str = '                │            │                '
 #test_str = '                └────────────┘                '
-test_str = 'SISO'
+test_str = 'SFTREG'
 
 #            00000000001
 #            01234567890

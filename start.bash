@@ -14,7 +14,9 @@ echo "  8) Fork One_FIFO to Two_FIFOs with Custom_Logic with Model"
 echo "  9) Join Two_FIFOs to One_FIFO with Custom_Logic"
 echo "  10) Join Two_FIFOs to One_FIFO with Custom_Logic with Model"
 echo "  11) Arbitration of two_FIFOs to One_FIFO with Custom_Logic with Model"
-echo "  12) One_ShiftReg"
+echo "  12) One_ShiftREG"
+echo "  13) Two_ShiftREGs with Custom_Logic with Model"
+echo "  14) ShiftREG and FIFO with Custom_Logic with Model"
 
 read n
 
@@ -58,6 +60,12 @@ fi
 if [ "$n" = "12" ]; then
     if [ $termcolumns -lt 52 ] || [ $termlines -lt 29 ]; then { echo "Expand terminal window to minimum: 52x29, your window is too small: ${termcolumns}x${termlines}" ; exit 1; } fi
 fi
+if [ "$n" = "13" ]; then
+    if [ $termcolumns -lt 109 ] || [ $termlines -lt 30 ]; then { echo "Expand terminal window to minimum: 109x30, your window is too small: ${termcolumns}x${termlines}" ; exit 1; } fi
+fi
+if [ "$n" = "14" ]; then
+    if [ $termcolumns -lt 109 ] || [ $termlines -lt 30 ]; then { echo "Expand terminal window to minimum: 109x30, your window is too small: ${termcolumns}x${termlines}" ; exit 1; } fi
+fi
 
 #Start Cocotb
 case $n in
@@ -73,5 +81,7 @@ case $n in
   10) make -B -f Makefile_sc10;;
   11) make -B -f Makefile_sc11;;
   12) make -B -f Makefile_sc12;;
+  13) make -B -f Makefile_sc13;;
+  14) make -B -f Makefile_sc14;;
   *) echo "invalid option";;
 esac
