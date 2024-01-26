@@ -200,17 +200,17 @@ class gadget_shiftregtr(gadgettop):
                     self._wctx.addstr(1,27, u'\u00D7'.encode('utf-8'), curses.color_pair(1))
                 ####F-POCKET####
                 if (self.pocketsstate_post['f'][0] == '1'):
-                    self._wctx.addstr(4,11, u'\u274B'.encode('utf-8'), curses.color_pair(2))
+                    self._wctx.addstr(1,14, u'\u274B'.encode('utf-8'), curses.color_pair(1))
                 elif (self.pocketsstate_post['f'][0] == '0'):
                     pass
                 else:
-                    self._wctx.addstr(4,11, u'\u00D7'.encode('utf-8'), curses.color_pair(2))
+                    self._wctx.addstr(1,14, u'\u00D7'.encode('utf-8'), curses.color_pair(1))
                 ####G-POCKET####
                 if (self.pocketsstate_post['g'][0] == '1'):
                     pass
                 elif (self.pocketsstate_post['g'][0] == '0'):
                     pass
                 else:
-                    self._wctx.addstr(3,10, u'\u00D7'.encode('utf-8'), curses.color_pair(2))
+                    self._wctx.addstr(3,10, u'\u00D7'.encode('utf-8'), curses.color_pair(1))
 
                 self._wctx.refresh()
