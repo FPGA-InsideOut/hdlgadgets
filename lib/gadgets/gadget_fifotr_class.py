@@ -178,7 +178,7 @@ class gadget_fifotr(gadgettop):
                 elif (self.pocketsstate_post['a'][0] == '0'):
                     pass
                 else:
-                    self._wctx.addstr(4,34, u'\u00D7'.encode('utf-8'), curses.color_pair(1))
+                    self._wctx.addstr(4,34, u'\u00D7'.encode('utf-8'), curses.color_pair(2))
                 ####B-POCKET####
                 if (self.pocketsstate_post['b'][0] == '1'):
                     self._wctx.addstr(1,27, u'\u274B'.encode('utf-8'), curses.color_pair(2))
