@@ -28,7 +28,7 @@ class gadget_fplate_sc15(gadgettop):
                 pass
 
         def drive_2d_model (self):
-                self._wctx.addstr(2,24, u'\u0020\u0020\u0046\u0049\u0046\u004F\u0020\u0020'.encode('utf-8'), curses.color_pair(3))
+                self._wctx.addstr(2,24, u'\u0020\u0053\u0046\u0054\u0052\u0045\u0047\u0020'.encode('utf-8'), curses.color_pair(3))
                 self._wctx.addstr(2,70, u'\u0020\u0020\u0046\u0049\u0046\u004F\u0020\u0020'.encode('utf-8'), curses.color_pair(3))
                 self._wctx.addstr(19,22, u'\u0020\u0020\u0043\u004F\u004E\u0054\u0052\u004F\u004C\u0020\u0020'.encode('utf-8'), curses.color_pair(3))
 
