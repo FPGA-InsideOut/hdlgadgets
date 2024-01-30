@@ -14,9 +14,9 @@ input                         pop
 
 // Modeling
 int unsigned qsize;
-logic [D_WIDTH - 1:0] queue_a [$], queue_b [$], queue [$];
-logic [D_WIDTH - 1:0] queue0, queue1, queue2;
-logic [D_WIDTH - 1:0] sum_a_and_b;
+logic [(D_WIDTH-1):0] queue_a [$], queue_b [$], queue [$];
+logic [(D_WIDTH-1):0] queue0, queue1, queue2;
+logic [(D_WIDTH-1):0] sum_a_and_b;
 
 
 ////START OF QUEUE MODEL////

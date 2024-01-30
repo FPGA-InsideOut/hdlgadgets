@@ -14,8 +14,8 @@ input                         pop_b
 
 // Modeling
 int unsigned qsize_a, qsize_b;
-logic [D_WIDTH - 1:0] queue_a [$], queue_b [$];
-logic [D_WIDTH - 1:0] queue0_a, queue1_a, queue2_a, queue0_b, queue1_b, queue2_b;
+logic [(D_WIDTH-1):0] queue_a [$], queue_b [$];
+logic [(D_WIDTH-1):0] queue0_a, queue1_a, queue2_a, queue0_b, queue1_b, queue2_b;
 
 ////START OF QUEUE MODEL////
   always @ (posedge clk)
