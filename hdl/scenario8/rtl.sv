@@ -15,13 +15,13 @@ output                  down_valid_b,
 input                   down_ready_b
 );
 
-wire  [D_WIDTH - 1:0] w_fifo1_down_data;
+wire  [(D_WIDTH-1):0] w_fifo1_down_data;
 wire                  w_fifo1_down_valid;
 wire                  w_clgk1_up_ready;
-wire  [D_WIDTH - 1:0] w_clgk1_down_data_a;
+wire  [(D_WIDTH-1):0] w_clgk1_down_data_a;
 wire                  w_clgk1_down_valid_a;
 wire                  w_fifo2_up_ready;
-wire  [D_WIDTH - 1:0] w_clgk1_down_data_b;
+wire  [(D_WIDTH-1):0] w_clgk1_down_data_b;
 wire                  w_clgk1_down_valid_b;
 wire                  w_fifo3_up_ready;
 

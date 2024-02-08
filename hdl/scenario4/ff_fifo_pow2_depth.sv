@@ -2,7 +2,7 @@
 //Valid/Rready flags generation is based on comparison of write & read counters
 //and their MSBs that indicate "Wrap-around", as per Clifford_E_Cummings.
 
-module ff_fifo_pow2_depth #(parameter D_WIDTH = 6, parameter A_WIDTH = 2)
+module ff_fifo_pow2_depth #(parameter D_WIDTH = 6, A_WIDTH = 2)
 (
 input                   clk,
 input                   rst,

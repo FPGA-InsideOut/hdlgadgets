@@ -97,6 +97,8 @@ class gadget_shiftregtr(gadgettop):
                         helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'f','g')
                 if (simphase == 1 and self.logicstate_pre['up_valid'][0] == '1' and self.logicstate_pre['down_ready'][0] == '1'):
                         helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'f','e')
+                if (simphase == 1 and self.logicstate_post['up_valid'][0] == '0' and self.logicstate_pre['down_ready'][0] == '0'and helper.check_transaction_of_some_state_exists(self.transstate_post['balls'],'f')):
+                        helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'f','g')            #this covers ERROR condition when MASTER drops VALID without sucessful hadshaking
                 if (simphase == 2 and self.logicstate_post['up_valid'][0] == '0' and helper.check_transaction_of_some_state_exists(self.transstate_post['balls'],'f')):
                         helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'f','g')
                 #PROCESS TRANSACTIONS (BALLS) IN G-POCKET

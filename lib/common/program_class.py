@@ -64,7 +64,6 @@ class program ():
 
     async def run(self):
 
-        await RisingEdge(self.hdl.clk)
         await ReadOnly()
 
         pressedkey = None

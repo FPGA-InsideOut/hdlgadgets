@@ -1,6 +1,6 @@
 //---TOP MODULE FOR RTL DESIGN---//
 
-module rtl #(parameter D_WIDTH = 6, parameter A_WIDTH = 2)
+module rtl #(parameter D_WIDTH = 6, A_WIDTH = 2)
 (
 input                   clk,
 input                   rst,

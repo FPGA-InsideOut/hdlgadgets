@@ -2,14 +2,14 @@ import curses
 from lib.gadgets.gadget_fifobase_class import gadget_fifobase
 from lib.common.helper_class import helper
 
-class gadget_fifo(gadget_fifobase):
+class gadget_fifocreditreturn(gadget_fifobase):
 
         def __init__(self):
                 super().__init__()
 
                 #Logic state
-                self.logicstate_pre = {'rst':[None], 'up_data':[None,None,None,None,None,None], 'up_valid':[None], 'up_ready':[None], 'full':[None], 'push':[None], 'down_data':[None,None,None,None,None,None], 'down_valid':[None], 'empty':[None], 'down_ready':[None], 'pop':[None], 'wr_ptr':[None,None,None], 'rd_ptr':[None,None,None], 'fifo_line0':[None,None,None,None,None,None], 'fifo_line1':[None,None,None,None,None,None], 'fifo_line2':[None,None,None,None,None,None], 'fifo_line3':[None,None,None,None,None,None]}
-                self.logicstate_post = {'rst':[None], 'up_data':[None,None,None,None,None,None], 'up_valid':[None], 'up_ready':[None], 'full':[None], 'push':[None], 'down_data':[None,None,None,None,None,None], 'down_valid':[None], 'empty':[None], 'down_ready':[None], 'pop':[None], 'wr_ptr':[None,None,None], 'rd_ptr':[None,None,None], 'fifo_line0':[None,None,None,None,None,None], 'fifo_line1':[None,None,None,None,None,None], 'fifo_line2':[None,None,None,None,None,None], 'fifo_line3':[None,None,None,None,None,None]}
+                self.logicstate_pre = {'rst':[None], 'up_data':[None,None,None,None,None,None], 'up_valid':[None], 'up_ready':[None], 'up_credit':[None], 'full':[None], 'push':[None], 'down_data':[None,None,None,None,None,None], 'down_valid':[None], 'empty':[None], 'down_ready':[None], 'pop':[None], 'wr_ptr':[None,None,None], 'rd_ptr':[None,None,None], 'fifo_line0':[None,None,None,None,None,None], 'fifo_line1':[None,None,None,None,None,None], 'fifo_line2':[None,None,None,None,None,None], 'fifo_line3':[None,None,None,None,None,None]}
+                self.logicstate_post = {'rst':[None], 'up_data':[None,None,None,None,None,None], 'up_valid':[None], 'up_ready':[None], 'up_credit':[None], 'full':[None], 'push':[None], 'down_data':[None,None,None,None,None,None], 'down_valid':[None], 'empty':[None], 'down_ready':[None], 'pop':[None], 'wr_ptr':[None,None,None], 'rd_ptr':[None,None,None], 'fifo_line0':[None,None,None,None,None,None], 'fifo_line1':[None,None,None,None,None,None], 'fifo_line2':[None,None,None,None,None,None], 'fifo_line3':[None,None,None,None,None,None]}
 
         def __del__(self):
                 super().__del__()
@@ -22,6 +22,7 @@ class gadget_fifo(gadget_fifobase):
                 helper.put_hdl_vector_to_dict(self.logicstate_post['up_data'], hdlpath.up_data.value.binstr)
                 helper.put_hdl_vector_to_dict(self.logicstate_post['up_valid'], hdlpath.up_valid.value.binstr)
                 helper.put_hdl_vector_to_dict(self.logicstate_post['up_ready'], hdlpath.up_ready.value.binstr)
+                helper.put_hdl_vector_to_dict(self.logicstate_post['up_credit'], hdlpath.up_credit.value.binstr)
                 helper.put_hdl_vector_to_dict(self.logicstate_post['full'], hdlpath.full.value.binstr)
                 helper.put_hdl_vector_to_dict(self.logicstate_post['push'], hdlpath.push.value.binstr)
                 helper.put_hdl_vector_to_dict(self.logicstate_post['down_data'], hdlpath.down_data.value.binstr)
@@ -51,7 +52,8 @@ class gadget_fifo(gadget_fifobase):
                 self._wctx.addstr(9,0,  u'\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u2502\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u2502\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020'.encode('utf-8'), curses.color_pair(1))
                 self._wctx.addstr(10,0, u'\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u2502\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u2502\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020'.encode('utf-8'), curses.color_pair(1))
                 self._wctx.addstr(11,0, u'\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u2502\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u2502\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020'.encode('utf-8'), curses.color_pair(1))
-                self._wctx.addstr(12,0, u'\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020'.encode('utf-8'), curses.color_pair(1))
+                self._wctx.addstr(12,0, u'\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252C\u2500\u2518\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020'.encode('utf-8'), curses.color_pair(1))
+                self._wctx.addstr(13,0, u'\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u2502\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020'.encode('utf-8'), curses.color_pair(1))
                 ####UP_VALID####
                 if (self.logicstate_post['up_valid'][0] == '1'):
                     self._wctx.addstr(10,0, u'\u2500\u2500\u2500\u2500\u0076\u0061\u006C\u0069\u0064\u2500\u2500\u2500\u2500\u2500\u2500\u276F'.encode('utf-8'), curses.color_pair(1))
@@ -61,13 +63,20 @@ class gadget_fifo(gadget_fifobase):
                     self._wctx.addstr(10,0, u'\u00D7\u00D7\u00D7\u00D7\u003F\u0076\u0061\u006C\u0069\u0064\u00D7\u00D7\u00D7\u00D7\u00D7\u276D'.encode('utf-8'), curses.color_pair(1))
                 ####UP_READY####
                 if (self.logicstate_post['up_ready'][0] == '1'):
-                    self._wctx.addstr(11,0, u'\u276E\u2500\u2500\u2500\u0072\u0065\u0061\u0064\u0079\u2500\u2500\u2500\u2500\u2500\u2500\u2500'.encode('utf-8'), curses.color_pair(1))
+                    self._wctx.addstr(11,7, u'\u276E\u2500\u0072\u0065\u0061\u0064\u0079\u2500\u2500'.encode('utf-8'), curses.color_pair(1))
                 elif (self.logicstate_post['up_ready'][0] == '0'):
-                    self._wctx.addstr(11,0, u'\u276C\uFF65\uFF65\uFF65\u0021\u0072\u0065\u0061\u0064\u0079\uFF65\uFF65\uFF65\uFF65\uFF65\uFF65'.encode('utf-8'), curses.color_pair(1))
+                    self._wctx.addstr(11,7, u'\u276C\uFF65\u0021\u0072\u0065\u0061\u0064\u0079\uFF65'.encode('utf-8'), curses.color_pair(1))
                 else:
-                    self._wctx.addstr(11,0, u'\u276C\u00D7\u00D7\u00D7\u003F\u0072\u0065\u0061\u0064\u0079\u00D7\u00D7\u00D7\u00D7\u00D7\u00D7'.encode('utf-8'), curses.color_pair(1))
+                    self._wctx.addstr(11,7, u'\u276C\u00D7\u003F\u0072\u0065\u0061\u0064\u0079\u00D7'.encode('utf-8'), curses.color_pair(1))
                 ####UP_DATA####
                 self._wctx.addstr(4,4, helper.show_dict_charlist_as_string(self.logicstate_post['up_data']), curses.color_pair(1))
+                ####UP_CREDIT_RETURN####
+                if (self.logicstate_post['up_credit'][0] == '1'):
+                    self._wctx.addstr(14,0, u'\u276E\u2500\u2500\u2500\u0063\u0072\u0065\u0064\u0069\u0074\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518'.encode('utf-8'), curses.color_pair(1))
+                elif (self.logicstate_post['up_credit'][0] == '0'):
+                    self._wctx.addstr(14,0, u'\u276C\uFF65\uFF65\uFF65\u0021\u0063\u0072\u0065\u0064\u0069\u0074\uFF65\uFF65\uFF65\uFF65\uFF65\uFF65\uFF65\uFF65\uFF65\uFF65\uFF65\uFF65\uFF65\uFF65\uFF65\uFF65\u2518'.encode('utf-8'), curses.color_pair(1))
+                else:
+                    self._wctx.addstr(14,0, u'\u276C\u00D7\u00D7\u00D7\u003F\u0063\u0072\u0065\u0064\u0069\u0074\u00D7\u00D7\u00D7\u00D7\u00D7\u00D7\u00D7\u00D7\u00D7\u00D7\u00D7\u00D7\u00D7\u00D7\u00D7\u00D7\u2518'.encode('utf-8'), curses.color_pair(1))
                 ####FULL####
                 if (self.logicstate_post['full'][0] == '1'):
                     self._wctx.addstr(11,17, u'\u0066\u0075\u006C\u006C'.encode('utf-8'), curses.color_pair(1))

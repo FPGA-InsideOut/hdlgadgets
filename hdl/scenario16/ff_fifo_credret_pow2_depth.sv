@@ -1,14 +1,15 @@
-//---AXI-STREAM FLOP-BASED FIFO WITH DEPTH OF PWR OF 2---//
+//---AXI-STREAM FLOP-BASED FIFO WITH CREDIT RETURN UPSTREAM SIGNAL WITH DEPTH OF PWR OF 2---//
 //Valid/Rready flags generation is based on comparison of write & read counters
 //and their MSBs that indicate "Wrap-around", as per Clifford_E_Cummings.
 
-module ff_fifo_pow2_depth #(parameter D_WIDTH = 6, A_WIDTH = 2)
+module ff_fifo_credret_pow2_depth #(parameter D_WIDTH = 6, A_WIDTH = 2)
 (
 input                   clk,
 input                   rst,
 input  [(D_WIDTH-1):0]  up_data,
 input                   up_valid,
 output                  up_ready,
+output                  up_credit,
 output [(D_WIDTH-1):0]  down_data,
 output                  down_valid,
 input                   down_ready
@@ -68,5 +69,8 @@ assign rd_ptr = fullwidth_rd_ptr[(A_WIDTH-1):0];
   assign up_ready = ~full;
 
 assign down_data = ram[rd_ptr];
+
+//"credit return" when "pop"
+  assign up_credit = pop;
 
 endmodule

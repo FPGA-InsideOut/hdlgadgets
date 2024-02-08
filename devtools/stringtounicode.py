@@ -38,7 +38,14 @@ test_str = 'Uncomment string'
 #test_str = '                │            │                '
 #test_str = '                │            │                '
 #test_str = '                └────────────┘                '
-test_str = 'SFTREG'
+#test_str = 'SFTREG'
+
+#test_str =  '                │[  ]┌─┬─┬─┬─┤               '
+
+#test_str =  '                │      │ │ │ │               '
+#test_str =  '                 └────┴─┴─┴─┴─┘               '
+
+
 
 #            00000000001
 #            01234567890
@@ -146,6 +153,11 @@ test_str = 'SFTREG'
 #test_str = '"Z,X,C,V,B,N-syms"'
 #test_str = 'z Z'
 #test_str = '❱'
+
+#test_str = '┬&[]'
+#test_str = '･･❬･･････'
+#test_str = '──❮──────'
+test_str = 'CBFC'
 
 
 # printing original String

@@ -2,18 +2,18 @@ import curses
 from lib.common.gadgettop_class import gadgettop
 from lib.common.helper_class import helper
 
-class gadget_fifotr(gadgettop):
+class gadget_credbasedfc4Xtr(gadgettop):
 
         def __init__(self):
                 super().__init__()
 
                 #Logic state
-                self.logicstate_pre = {'rst':[None], 'up_valid':[None], 'push':[None], 'pop':[None], 'wr_ptr':[None,None,None], 'rd_ptr':[None,None,None]}
-                self.logicstate_post = {'rst':[None], 'up_valid':[None], 'push':[None], 'pop':[None], 'wr_ptr':[None,None,None], 'rd_ptr':[None,None,None]}
+                self.logicstate_pre = {'rst':[None], 'up_valid':[None]}
+                self.logicstate_post = {'rst':[None], 'up_valid':[None]}
 
                 #Transactions state (balls representing transactions)
-                self.transstate_pre = {'balls':[None,None,None,None,None]}
-                self.transstate_post = {'balls':['g','g','g','g','g']}
+                self.transstate_pre = {'balls':[None,None,None,None,None,None]}
+                self.transstate_post = {'balls':['g','g','g','g','g','g']}
 
                 #Pockets state (only for 2D CURSES version, 3D will use transaction states only)
                 self.pocketsstate_pre = {'a':[None], 'b':[None], 'c':[None], 'd':[None], 'e':[None], 'f':[None], 'g':[None]}
@@ -37,11 +37,7 @@ class gadget_fifotr(gadgettop):
                 helper.dictcopy(self.logicstate_post, self.logicstate_pre)
 
                 helper.put_hdl_vector_to_dict(self.logicstate_post['rst'], hdlpath.rst.value.binstr)
-                helper.put_hdl_vector_to_dict(self.logicstate_post['up_valid'], hdlpath.up_valid.value.binstr)
-                helper.put_hdl_vector_to_dict(self.logicstate_post['push'], hdlpath.push.value.binstr)
-                helper.put_hdl_vector_to_dict(self.logicstate_post['pop'], hdlpath.pop.value.binstr)
-                helper.put_hdl_vector_to_dict(self.logicstate_post['wr_ptr'], hdlpath.fullwidth_wr_ptr.value.binstr)
-                helper.put_hdl_vector_to_dict(self.logicstate_post['rd_ptr'], hdlpath.fullwidth_rd_ptr.value.binstr)
+                helper.put_hdl_vector_to_dict(self.logicstate_post['up_valid'], hdlpath.valid_pipeline.value.binstr)
 
 
         def post_process_logic_state (self, phase):
@@ -70,44 +66,39 @@ class gadget_fifotr(gadgettop):
                 #PROCESS TRANSACTIONS (BALLS) IN B-POCKET
                 if (simphase == 0):
                         helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'b','g')
-                if (simphase == 1 and self.logicstate_pre['pop'][0] == '1' and self.logicstate_pre['rd_ptr'][1] == '0' and self.logicstate_pre['rd_ptr'][2] == '0'):
+                if (simphase == 1):
                         helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'b','a')
                 if (simphase == 2):
                         pass
                 #PROCESS TRANSACTIONS (BALLS) IN C-POCKET
                 if (simphase == 0):
                         helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'c','g')
-                if (simphase == 1 and self.logicstate_pre['pop'][0] == '1' and self.logicstate_pre['rd_ptr'][1] == '0' and self.logicstate_pre['rd_ptr'][2] == '1'):
-                        helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'c','a')
+                if (simphase == 1):
+                        helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'c','b')
                 if (simphase == 2):
                         pass
                 #PROCESS TRANSACTIONS (BALLS) IN D-POCKET
                 if (simphase == 0):
                         helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'d','g')
-                if (simphase == 1 and self.logicstate_pre['pop'][0] == '1' and self.logicstate_pre['rd_ptr'][1] == '1' and self.logicstate_pre['rd_ptr'][2] == '0'):
-                        helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'d','a')
+                if (simphase == 1):
+                        helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'d','c')
                 if (simphase == 2):
                         pass
                 #PROCESS TRANSACTIONS (BALLS) IN E-POCKET
                 if (simphase == 0):
                         helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'e','g')
-                if (simphase == 1 and self.logicstate_pre['pop'][0] == '1' and self.logicstate_pre['rd_ptr'][1] == '1' and self.logicstate_pre['rd_ptr'][2] == '1'):
-                        helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'e','a')
+                if (simphase == 1):
+                        helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'e','d')
                 if (simphase == 2):
                         pass
                 #PROCESS TRANSACTIONS (BALLS) IN F-POCKET
                 if (simphase == 0):
                         helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'f','g')
-                if (simphase == 1 and self.logicstate_pre['push'][0] == '1' and self.logicstate_pre['wr_ptr'][1] == '0' and self.logicstate_pre['wr_ptr'][2] == '0'):
-                        helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'f','b')
-                if (simphase == 1 and self.logicstate_pre['push'][0] == '1' and self.logicstate_pre['wr_ptr'][1] == '0' and self.logicstate_pre['wr_ptr'][2] == '1'):
-                        helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'f','c')
-                if (simphase == 1 and self.logicstate_pre['push'][0] == '1' and self.logicstate_pre['wr_ptr'][1] == '1' and self.logicstate_pre['wr_ptr'][2] == '0'):
-                        helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'f','d')
-                if (simphase == 1 and self.logicstate_pre['push'][0] == '1' and self.logicstate_pre['wr_ptr'][1] == '1' and self.logicstate_pre['wr_ptr'][2] == '1'):
+                if (simphase == 1 and self.logicstate_pre['up_valid'][0] == '1'):
                         helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'f','e')
-                if (simphase == 1 and self.logicstate_pre['push'][0] == '0' and self.logicstate_post['up_valid'][0] == '0' and helper.check_transaction_of_some_state_exists(self.transstate_post['balls'],'f')):
-                        helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'f','g')            #this covers ERROR condition when MASTER drops VALID without sucessful hadshaking
+                ####if (simphase == 1 and self.logicstate_post['up_valid'][0] == '0' and helper.check_transaction_of_some_state_exists(self.transstate_post['balls'],'f')):
+                ####        helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'f','g')      #this covers ERROR condition when MASTER drops VALID without sucessful hadshaking
+                ####                                                                                                    #but this shall not happen in freeflow pipelines as after clock F-POCKET shall be empty
                 if (simphase == 2 and self.logicstate_post['up_valid'][0] == '0' and helper.check_transaction_of_some_state_exists(self.transstate_post['balls'],'f')):
                         helper.convert_single_transaction_of_some_state(self.transstate_post['balls'],'f','g')
                 #PROCESS TRANSACTIONS (BALLS) IN G-POCKET
@@ -180,42 +171,42 @@ class gadget_fifotr(gadgettop):
                 elif (self.pocketsstate_post['a'][0] == '0'):
                     pass
                 else:
-                    self._wctx.addstr(4,34, u'\u00D7'.encode('utf-8'), curses.color_pair(2))
+                    self._wctx.addstr(5,34, u'\u00D7'.encode('utf-8'), curses.color_pair(2))
                 ####B-POCKET####
                 if (self.pocketsstate_post['b'][0] == '1'):
-                    self._wctx.addstr(1,27, u'\u274B'.encode('utf-8'), curses.color_pair(2))
+                    self._wctx.addstr(7,27, u'\u274B'.encode('utf-8'), curses.color_pair(2))
                 elif (self.pocketsstate_post['b'][0] == '0'):
                     pass
                 else:
-                    self._wctx.addstr(1,27, u'\u00D7'.encode('utf-8'), curses.color_pair(2))
+                    self._wctx.addstr(7,27, u'\u00D7'.encode('utf-8'), curses.color_pair(2))
                 ####C-POCKET####
                 if (self.pocketsstate_post['c'][0] == '1'):
-                    self._wctx.addstr(3,27, u'\u274B'.encode('utf-8'), curses.color_pair(2))
+                    self._wctx.addstr(5,27, u'\u274B'.encode('utf-8'), curses.color_pair(2))
                 elif (self.pocketsstate_post['c'][0] == '0'):
                     pass
                 else:
-                    self._wctx.addstr(3,27, u'\u00D7'.encode('utf-8'), curses.color_pair(2))
+                    self._wctx.addstr(5,27, u'\u00D7'.encode('utf-8'), curses.color_pair(2))
                 ####D-POCKET####
                 if (self.pocketsstate_post['d'][0] == '1'):
-                    self._wctx.addstr(5,27, u'\u274B'.encode('utf-8'), curses.color_pair(2))
+                    self._wctx.addstr(3,27, u'\u274B'.encode('utf-8'), curses.color_pair(2))
                 elif (self.pocketsstate_post['d'][0] == '0'):
                     pass
                 else:
-                    self._wctx.addstr(5,27, u'\u00D7'.encode('utf-8'), curses.color_pair(2))
+                    self._wctx.addstr(3,27, u'\u00D7'.encode('utf-8'), curses.color_pair(2))
                 ####E-POCKET####
                 if (self.pocketsstate_post['e'][0] == '1'):
-                    self._wctx.addstr(7,27, u'\u274B'.encode('utf-8'), curses.color_pair(2))
+                    self._wctx.addstr(1,27, u'\u274B'.encode('utf-8'), curses.color_pair(2))
                 elif (self.pocketsstate_post['e'][0] == '0'):
                     pass
                 else:
-                    self._wctx.addstr(7,27, u'\u00D7'.encode('utf-8'), curses.color_pair(2))
+                    self._wctx.addstr(1,27, u'\u00D7'.encode('utf-8'), curses.color_pair(2))
                 ####F-POCKET####
                 if (self.pocketsstate_post['f'][0] == '1'):
-                    self._wctx.addstr(4,11, u'\u274B'.encode('utf-8'), curses.color_pair(2))
+                    self._wctx.addstr(5,11, u'\u274B'.encode('utf-8'), curses.color_pair(2))
                 elif (self.pocketsstate_post['f'][0] == '0'):
                     pass
                 else:
-                    self._wctx.addstr(4,11, u'\u00D7'.encode('utf-8'), curses.color_pair(2))
+                    self._wctx.addstr(5,11, u'\u00D7'.encode('utf-8'), curses.color_pair(2))
                 ####G-POCKET####
                 if (self.pocketsstate_post['g'][0] == '1'):
                     pass

@@ -1,6 +1,6 @@
 //---TOP MODULE FOR RTL DESIGN---//
 
-module rtl #(parameter D_WIDTH = 6, parameter A_WIDTH = 2)
+module rtl #(parameter D_WIDTH = 6, A_WIDTH = 2)
 (
 input                   clk,
 input                   rst,
@@ -12,10 +12,10 @@ output                  down_valid,
 input                   down_ready
 );
 
-wire  [D_WIDTH - 1:0] w_sftreg1_down_data;
+wire  [(D_WIDTH-1):0] w_sftreg1_down_data;
 wire                  w_sftreg1_down_valid;
 wire                  w_clgk1_up_ready;
-wire  [D_WIDTH - 1:0] w_clgk1_down_data;
+wire  [(D_WIDTH-1):0] w_clgk1_down_data;
 wire                  w_clgk1_down_valid;
 wire                  w_fifo1_up_ready;
 
