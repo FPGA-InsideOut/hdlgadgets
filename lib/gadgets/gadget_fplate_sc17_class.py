@@ -30,7 +30,8 @@ class gadget_fplate_sc17(gadgettop):
         def drive_2d_model (self):
                 self._wctx.addstr(2,22, u'\u0020\u0043\u0055\u0053\u0054\u004F\u004D\u0020'.encode('utf-8'), curses.color_pair(3))
                 self._wctx.addstr(3,22, u'\u0020\u004C\u004F\u0047\u0049\u0043\u0020\u0020'.encode('utf-8'), curses.color_pair(3))
-                self._wctx.addstr(17,64, u'\u0020\u0020\u004D\u004F\u0044\u0045\u004C\u005F\u0051\u0055\u0045\u0055\u0045\u0020\u0020'.encode('utf-8'), curses.color_pair(3))
+                self._wctx.addstr(17,64, u'\u0020\u004D\u004F\u0044\u0045\u004C\u005F\u0051\u0055\u0045\u0055\u0045\u005F\u0041\u0020'.encode('utf-8'), curses.color_pair(3))
+                self._wctx.addstr(25,64, u'\u0020\u004D\u004F\u0044\u0045\u004C\u005F\u0051\u0055\u0045\u0055\u0045\u005F\u0042\u0020'.encode('utf-8'), curses.color_pair(3))
                 self._wctx.addstr(17,94, u'\u0052\u0054\u004C\u005F\u004D\u004F\u0044\u0045\u004C\u005F\u0045\u0052\u0052'.encode('utf-8'), curses.color_pair(3))
                 self._wctx.addstr(17,22, u'\u0020\u0020\u0043\u004F\u004E\u0054\u0052\u004F\u004C\u0020\u0020'.encode('utf-8'), curses.color_pair(3))
 
