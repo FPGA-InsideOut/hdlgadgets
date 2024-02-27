@@ -157,7 +157,9 @@ test_str = 'Uncomment string'
 #test_str = '┬&[]'
 #test_str = '･･❬･･････'
 #test_str = '──❮──────'
-test_str = 'CBFC'
+#test_str = '─╮│╰─❮──╮──────╯'
+
+test_str = '_RLBK'
 
 
 # printing original String

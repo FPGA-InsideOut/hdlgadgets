@@ -20,6 +20,7 @@ echo "  14) ShiftREG and FIFO with Custom_Logic with Model"
 echo "  15) ShiftREG and FIFO"
 echo "  16) Credit_Based_Flow_Control with Model (reduced bandwidth)"
 echo "  17) Custom_Logic with Model with two_Queues (for FIFO with rollback)"
+echo "  18) Rollback_FIFO with Model"
 
 read n
 
@@ -73,10 +74,13 @@ if [ "$n" = "15" ]; then
     if [ $termcolumns -lt 98 ] || [ $termlines -lt 30 ]; then { echo "Expand terminal window to minimum: 98x30, your window is too small: ${termcolumns}x${termlines}" ; exit 1; } fi
 fi
 if [ "$n" = "16" ]; then
-    if [ $termcolumns -lt 109 ] || [ $termlines -lt 31 ]; then { echo "Expand terminal window to minimum: 109x30, your window is too small: ${termcolumns}x${termlines}" ; exit 1; } fi
+    if [ $termcolumns -lt 109 ] || [ $termlines -lt 31 ]; then { echo "Expand terminal window to minimum: 109x31, your window is too small: ${termcolumns}x${termlines}" ; exit 1; } fi
 fi
 if [ "$n" = "17" ]; then
-    if [ $termcolumns -lt 109 ] || [ $termlines -lt 33 ]; then { echo "Expand terminal window to minimum: 109x30, your window is too small: ${termcolumns}x${termlines}" ; exit 1; } fi
+    if [ $termcolumns -lt 109 ] || [ $termlines -lt 33 ]; then { echo "Expand terminal window to minimum: 109x33, your window is too small: ${termcolumns}x${termlines}" ; exit 1; } fi
+fi
+if [ "$n" = "18" ]; then
+    if [ $termcolumns -lt 90 ] || [ $termlines -lt 35 ]; then { echo "Expand terminal window to minimum: 90x30, your window is too small: ${termcolumns}x${termlines}" ; exit 1; } fi
 fi
 
 #Start Cocotb
@@ -98,5 +102,6 @@ case $n in
   15) make -B -f Makefile_sc15;;
   16) make -B -f Makefile_sc16;;
   17) make -B -f Makefile_sc17;;
+  18) make -B -f Makefile_sc18;;
   *) echo "invalid option";;
 esac
